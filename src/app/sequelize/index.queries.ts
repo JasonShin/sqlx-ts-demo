@@ -17,3 +17,35 @@ export interface ISomeQueryQuery {
     result: ISomeQueryResult;
 };
 
+
+
+
+export type TestInsertParams = [string, number];
+
+
+export interface ITestInsertResult {
+    
+};
+
+
+export interface ITestInsertQuery {
+    params: TestInsertParams;
+    result: ITestInsertResult;
+};
+
+
+
+
+export type TestUpdateParams = [string];
+
+
+export interface ITestUpdateResult {
+    
+};
+
+
+export interface ITestUpdateQuery {
+    params: TestUpdateParams;
+    result: ITestUpdateResult;
+};
+
