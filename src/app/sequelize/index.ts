@@ -4,6 +4,7 @@ import {
     ISomeQueryResult,
     TestInsertParams,
     TestUpdateParams,
+    TestDeleteParams,
  } from "./index.queries";
 
 
@@ -33,15 +34,24 @@ async function demo() {
         bind: ['testFood', 1] as TestInsertParams,
     })
 
+    const newFoodType = 'testFood2'
+
     await sequelize.query(sql`
         -- @name: testUpdate
         UPDATE items SET food_type = $1 WHERE id = (SELECT id FROM items WHERE food_type = 'testFood' LIMIT 1);
     `, {
         type: QueryTypes.UPDATE,
         // Unfortunately sequelize query does not allow you to type binding params for UPDATE
-        bind: ['testFood2'] as TestUpdateParams,
+        bind: [newFoodType] as TestUpdateParams,
     })
     
+    await sequelize.query(sql`
+        -- @name: testDelete
+        DELETE FROM items WHERE food_type = $1;
+    `, {
+        type: QueryTypes.DELETE,
+        bind: [newFoodType] as TestDeleteParams,
+    })
 }
 
 (async () => {
