@@ -4,6 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "lint": "npx eslint . --ext .ts",
+    "lint:fix": "npm run lint -- --fix && npm run prettier",
+    "prettier": "npx prettier \"src/**/*.queries.ts\" --write",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,6 +20,10 @@
   },
   "devDependencies": {
     "@types/sequelize": "^4.28.14",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.45.0",
+    "prettier": "^3.0.0",
     "typescript": "^5.1.6"
   }
 }
