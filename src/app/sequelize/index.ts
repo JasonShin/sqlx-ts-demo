@@ -3,7 +3,7 @@ import {QueryTypes, Sequelize} from 'sequelize'
 import { ISomeQueryQuery, ISomeQueryResult } from "./index.queries";
 
 
-const sequelize = new Sequelize('postgres://127.0.0.1')
+const sequelize = new Sequelize('postgres://postgres:postgres@127.0.0.1:54321')
 
 async function demo() {
     const someQuery = await sequelize.query<ISomeQueryResult>(sql`
@@ -22,4 +22,5 @@ async function demo() {
 
 (async () => {
     await demo()
+    await sequelize.close()
 })();
