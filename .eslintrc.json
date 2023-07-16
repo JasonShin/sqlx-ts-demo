@@ -3,6 +3,9 @@
     "extends": [
         "plugin:@typescript-eslint/recommended"
     ],
+    "rules": {
+        "semi": 0
+    },
     "parser": "@typescript-eslint/parser",
     "parserOptions": { "project": ["./tsconfig.json"] }
 }
