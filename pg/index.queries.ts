@@ -1,5 +1,25 @@
 
 
+export type ExampleQueryParams = [];
+
+
+export interface IExampleQueryResult {
+    food_type: string;
+	id: number;
+	points: number;
+	table_id: number;
+	time_takes_to_cook: number;
+};
+
+
+export interface IExampleQueryQuery {
+    params: ExampleQueryParams;
+    result: IExampleQueryResult;
+};
+
+
+
+
 export type SomeQueryParams = [];
 
 
@@ -15,26 +35,6 @@ export interface ISomeQueryResult {
 export interface ISomeQueryQuery {
     params: SomeQueryParams;
     result: ISomeQueryResult;
-};
-
-
-
-
-export type TestAwaitQueryParams = [];
-
-
-export interface ITestAwaitQueryResult {
-    food_type: string;
-	id: number;
-	points: number;
-	table_id: number;
-	time_takes_to_cook: number;
-};
-
-
-export interface ITestAwaitQueryQuery {
-    params: TestAwaitQueryParams;
-    result: ITestAwaitQueryResult;
 };
 
 
@@ -83,5 +83,21 @@ export interface ITestDeleteResult {
 export interface ITestDeleteQuery {
     params: TestDeleteParams;
     result: ITestDeleteResult;
+};
+
+
+
+
+export type GetItemsParams = [];
+
+
+export interface IGetItemsResult {
+    tableId: number;
+};
+
+
+export interface IGetItemsQuery {
+    params: GetItemsParams;
+    result: IGetItemsResult;
 };
 

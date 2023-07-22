@@ -4,7 +4,7 @@ import {
     ISomeQueryResult,
     TestInsertParams, ITestInsertResult,
     TestUpdateParams, ITestUpdateResult, 
-    TestDeleteParams, ITestDeleteResult,
+    TestDeleteParams, ITestDeleteResult, IGetItemsResult,
  } from './index.queries'
 
 
@@ -16,12 +16,12 @@ const client = new Client({
     password: 'postgres',
 });
 
+const exampleQuery = sql`
+SELECT * FROM items;
+`;
+
 (async () => {
-    await sql`
-        -- @name: testAwaitQuery
-        SELECT * FROM items
-    `
-    const someQuery = await client.query<ISomeQueryResult>(sql`
+    const someQuery = await client.query(sql`
         SELECT * FROM items;
     `)
 
@@ -48,4 +48,14 @@ const client = new Client({
     `, [newFoodType])
 
     await client.end()
+
+    class TestQueryRepository {
+        getItems() {
+            return client.query<IGetItemsResult>(sql`
+                -- @name: getItems
+                SELECT tables.id as tableId FROM items
+                JOIN tables ON items.table_id = tables.id;
+            `)
+        }
+    }
 })();
