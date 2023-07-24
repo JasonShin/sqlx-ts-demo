@@ -1,7 +1,6 @@
 import { sql } from 'sqlx-ts'
 import { Client } from 'pg'
 import {
-    ISomeQueryResult,
     TestInsertParams, ITestInsertResult,
     TestUpdateParams, ITestUpdateResult, 
     TestDeleteParams, ITestDeleteResult, IGetItemsResult,
@@ -15,10 +14,6 @@ const client = new Client({
     user: 'postgres',
     password: 'postgres',
 });
-
-const exampleQuery = sql`
-SELECT * FROM items;
-`;
 
 (async () => {
     const someQuery = await client.query(sql`
@@ -58,4 +53,6 @@ SELECT * FROM items;
             `)
         }
     }
+
+    new TestQueryRepository()
 })();
